@@ -27,6 +27,7 @@ console = Console()
     help="Directory in which the Semgrep rules are stored",
 )
 def cli(ctx: click.Context, dir: str):
+    """Manages third-party sources of Semgrep rules."""
     ctx.ensure_object(dict)
 
     ctx.obj["WORKING_DIR"] = dir
@@ -40,6 +41,7 @@ def cli(ctx: click.Context, dir: str):
     help="Identifier of a source",
 )
 def list_cmd(ctx: click.Context, source: str = None) -> None:
+    """Lists sources."""
     download_dir = ctx.obj["WORKING_DIR"]
 
     sources = get_sources(download_dir, source)
@@ -117,6 +119,7 @@ def _create_table_for_sources(sources: typing.List[Source]) -> Table:
     help="Identifier of a source",
 )
 def download(ctx: click.Context, source: str = None) -> None:
+    """Downloads sources."""
     download_dir = ctx.obj["WORKING_DIR"]
 
     sources_count = download_sources(download_dir, source)
@@ -140,6 +143,7 @@ def download(ctx: click.Context, source: str = None) -> None:
     help="Identifier of a source",
 )
 def remove(ctx: click.Context, source: str = None) -> None:
+    """Removes downloaded sources."""
     download_dir = ctx.obj["WORKING_DIR"]
 
     sources_count = delete_sources(download_dir, source)
@@ -163,6 +167,7 @@ def remove(ctx: click.Context, source: str = None) -> None:
     help="Identifier of a source",
 )
 def sync(ctx: click.Context, source: str = None) -> None:
+    """Syncs downloaded sources."""
     download_dir = ctx.obj["WORKING_DIR"]
 
     sources_count = sync_sources(download_dir, source)
