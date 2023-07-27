@@ -3,6 +3,7 @@ from dataclasses import dataclass
 import typing
 import os
 import git
+import shutil
 
 from exception import SemgrepRulesManagerException
 
@@ -37,6 +38,13 @@ class Source:
         repo = git.Repo(self.location)
 
         return repo.rev_parse("origin/" + self.repo_brach).hexsha
+
+    def download(self) -> None:
+        git.Repo.clone_from(self.repo_url, self.location)
+
+    def remove(self) -> None:
+        if self.is_downloaded:
+            shutil.rmtree(self.location)
 
 
 def read_sources(

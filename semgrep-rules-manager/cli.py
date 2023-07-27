@@ -3,7 +3,7 @@
 import click
 import typing
 
-from core import get_sources, Source
+from core import get_sources, Source, download_sources, delete_sources
 
 from rich.console import Console
 from rich.table import Table
@@ -105,14 +105,48 @@ def _create_table_for_sources(sources: typing.List[Source]) -> Table:
 
 @cli.command
 @click.pass_context
-def download(ctx: click.Context) -> None:
-    print(f"Download to {ctx.obj['WORKING_DIR']}")
+@click.option(
+    "--source",
+    type=str,
+    help="Identifier of a source",
+)
+def download(ctx: click.Context, source: str = None) -> None:
+    download_dir = ctx.obj["WORKING_DIR"]
+
+    sources_count = download_sources(download_dir, source)
+
+    if sources_count == 1:
+        console.print(
+            ":white_check_mark: The source was successfully downloaded."
+        )
+    else:
+        console.print(
+            f":white_check_mark: {sources_count} sources were successfully"
+            " downloaded"
+        )
 
 
 @cli.command
 @click.pass_context
-def remove(ctx: click.Context) -> None:
-    print(f"Remove from {ctx.obj['WORKING_DIR']}")
+@click.option(
+    "--source",
+    type=str,
+    help="Identifier of a source",
+)
+def remove(ctx: click.Context, source: str = None) -> None:
+    download_dir = ctx.obj["WORKING_DIR"]
+
+    sources_count = delete_sources(download_dir, source)
+
+    if sources_count == 1:
+        console.print(
+            ":white_check_mark: The source was successfully deleted."
+        )
+    else:
+        console.print(
+            f":white_check_mark: {sources_count} sources were successfully"
+            " deleted"
+        )
 
 
 def main() -> None:
