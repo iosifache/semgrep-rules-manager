@@ -1,7 +1,6 @@
 #!/usr/bin/python3
 
 import click
-import os
 import typing
 
 from core import get_sources, Source
@@ -64,7 +63,7 @@ def _create_description_of_source(source: Source) -> str:
 
 
 def _create_sync_text(source: Source) -> str:
-    if source.local_commit != None and source.remote_commit != None:
+    if source.local_commit is not None and source.remote_commit is not None:
         comparison_sign = "==" if source.is_synced else "!="
         comparison_reason = (
             f" because {source.local_commit} (local)"
@@ -73,7 +72,7 @@ def _create_sync_text(source: Source) -> str:
     else:
         comparison_reason = ""
 
-    synced_text = f":white_check_mark:" if source.is_synced else ":x:"
+    synced_text = ":white_check_mark:" if source.is_synced else ":x:"
     synced_text += comparison_reason
 
     return synced_text
@@ -111,7 +110,7 @@ def download(ctx: click.Context) -> None:
 
 @cli.command
 @click.pass_context
-def download(ctx: click.Context) -> None:
+def remove(ctx: click.Context) -> None:
     print(f"Remove from {ctx.obj['WORKING_DIR']}")
 
 

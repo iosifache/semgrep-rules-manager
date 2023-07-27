@@ -1,6 +1,5 @@
 from sources import read_sources, Source
 import typing
-import os
 
 
 def get_sources(download_dir: str, identifier: str) -> typing.List[Source]:
