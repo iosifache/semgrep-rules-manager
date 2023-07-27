@@ -2,14 +2,25 @@ community:
   description: Official repository of rules
   repository_url: https://github.com/returntocorp/semgrep-rules
   repository_branch: develop
+  ignored:
+    # YAML files that are not rules.
+    - stats
   author: Semgrep
   license: LGPL 2.1
 gitlab:
   description: Rules used in GitLab SAST
   repository_url: https://gitlab.com/gitlab-org/security-products/sast-rules
   repository_branch: main
+  ignored:
+    # YAML files that are not rules.
+    - mappings
+    # Invalid rules
+    - java/scaffold.yml
+    - scala/scaffold.yml
   author: GitLab
   license: MIT
+  preprocessors:
+    - id-standardization
 trailofbits:
   description: Rules used in the audits, research and projects of Trail of Bits
   repository_url: https://github.com/trailofbits/semgrep-rules
@@ -26,6 +37,9 @@ elttam:
   description: Custom rules used in elttam
   repository_url: https://github.com/elttam/semgrep-rules
   repository_branch: main
+  ignored:
+    # YAML files that are not rules.
+    - perf-templates
   author: elttam
   license: MIT
 kondukto:
