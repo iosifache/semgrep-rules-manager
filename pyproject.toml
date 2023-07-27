@@ -15,7 +15,7 @@ gitpython = "^3.1.32"
 rich = "^13.4.2"
 
 [tool.poetry.scripts]
-semgrep-rules-manager = 'semgrep-rules-manager.cli:cli'
+semgrep-rules-manager = 'semgrep-rules-manager.cli:main'
 
 [tool.poetry.group.dev.dependencies]
 flake8 = "^6.0.0"

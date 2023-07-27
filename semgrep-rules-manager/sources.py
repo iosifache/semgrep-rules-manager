@@ -4,6 +4,8 @@ import typing
 import os
 import git
 
+from exception import SemgrepRulesManagerException
+
 
 @dataclass
 class Source:
@@ -46,6 +48,7 @@ def read_sources(
     with open(sources_fn, "r") as sources_fd:
         sources = yaml.load(sources_fd, Loader=yaml.SafeLoader)
 
+        yield_once = False
         for key, details in sources.items():
             if identifier and identifier != key:
                 continue
@@ -61,6 +64,14 @@ def read_sources(
                 details["license"],
                 location,
             )
+            yield_once = True
 
             if identifier and identifier == key:
                 break
+
+        if identifier and not yield_once:
+            raise SourceNotFoundException()
+
+
+class SourceNotFoundException(SemgrepRulesManagerException):
+    """The specified source was not found."""

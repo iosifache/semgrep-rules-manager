@@ -7,6 +7,7 @@ from core import get_sources, Source
 
 from rich.console import Console
 from rich.table import Table
+from exception import SemgrepRulesManagerException
 
 console = Console()
 
@@ -114,5 +115,12 @@ def remove(ctx: click.Context) -> None:
     print(f"Remove from {ctx.obj['WORKING_DIR']}")
 
 
+def main() -> None:
+    try:
+        cli()
+    except SemgrepRulesManagerException as e:
+        console.print(f":exclamation: {str(e)}")
+
+
 if __name__ == "__main__":
-    cli()
+    main()
