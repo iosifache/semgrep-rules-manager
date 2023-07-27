@@ -1,0 +1,20 @@
+[tool.poetry]
+name = "semgrep-rules-manager"
+version = "0.1.0"
+description = "Manager of third-party Semgrep rules"
+authors = ["George-Andrei Iosif <andrei.iosif@canonical.com>"]
+license = "MIT"
+readme = "README.md"
+packages = [{include = "semgrep-rules-manager"}]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+click = "^8.1.6"
+
+
+[tool.poetry.scripts]
+semgrep-rules-manager = 'semgrep-rules-manager.cli:cli'
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
