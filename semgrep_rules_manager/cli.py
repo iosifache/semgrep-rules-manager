@@ -3,16 +3,17 @@
 import typing
 
 import click
-from core import (
+from rich.console import Console
+from rich.table import Table
+
+from semgrep_rules_manager.core import (
     Source,
     delete_sources,
     download_sources,
     get_sources,
     sync_sources,
 )
-from exception import SemgrepRulesManagerException
-from rich.console import Console
-from rich.table import Table
+from semgrep_rules_manager.exception import SemgrepRulesManagerException
 
 console = Console()
 
@@ -23,7 +24,7 @@ console = Console()
     "--dir",
     type=click.Path(exists=True, writable=True, dir_okay=True),
     required=True,
-    help="Directory in which the Semgrep rules are stores",
+    help="Directory in which the Semgrep rules are stored",
 )
 def cli(ctx: click.Context, dir: str):
     ctx.ensure_object(dict)
@@ -31,14 +32,14 @@ def cli(ctx: click.Context, dir: str):
     ctx.obj["WORKING_DIR"] = dir
 
 
-@cli.command
+@cli.command(name="list")
 @click.pass_context
 @click.option(
     "--source",
     type=str,
     help="Identifier of a source",
 )
-def get(ctx: click.Context, source: str = None) -> None:
+def list_cmd(ctx: click.Context, source: str = None) -> None:
     download_dir = ctx.obj["WORKING_DIR"]
 
     sources = get_sources(download_dir, source)

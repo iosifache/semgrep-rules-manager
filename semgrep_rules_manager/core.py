@@ -1,6 +1,6 @@
 import typing
 
-from sources import Source, read_sources
+from semgrep_rules_manager.sources import Source, read_sources
 
 
 def _execute_bulk_operation(

@@ -7,7 +7,8 @@ from dataclasses import dataclass
 
 import git
 import yaml
-from exception import SemgrepRulesManagerException
+
+from semgrep_rules_manager.exception import SemgrepRulesManagerException
 
 
 class Preprocessor:
