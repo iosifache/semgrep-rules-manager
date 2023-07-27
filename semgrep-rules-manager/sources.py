@@ -2,6 +2,7 @@ import yaml
 from dataclasses import dataclass
 import typing
 import os
+import git
 
 
 @dataclass
@@ -9,22 +10,57 @@ class Source:
     identifier: str
     description: str
     repo_url: str
+    repo_brach: str
     author: str
     license: str
-    is_downloaded: bool
+    location: str
+    is_downloaded: bool = False
+    local_commit: str = None
+    remote_commit: str = None
+    is_synced: bool = False
+
+    def __post_init__(self) -> None:
+        self.is_downloaded = os.path.isdir(self.location)
+        if self.is_downloaded:
+            self.local_commit = self._get_last_local_commit()
+            self.remote_commit = self._get_last_remote_commit()
+            self.is_synced = self.local_commit == self.remote_commit
+
+    def _get_last_local_commit(self) -> str:
+        repo = git.Repo(self.location)
+
+        return repo.head.object.hexsha
+
+    def _get_last_remote_commit(self) -> str:
+        repo = git.Repo(self.location)
+
+        return repo.rev_parse("origin/" + self.repo_brach).hexsha
 
 
-def read_sources() -> typing.Generator[Source, None, None]:
-    sources_fn = os.path.join(os.path.dirname(__file__), os.pardir, "sources.yaml")
+def read_sources(
+    download_dir: str, identifier: str
+) -> typing.Generator[Source, None, None]:
+    sources_fn = os.path.join(
+        os.path.dirname(__file__), os.pardir, "sources.yaml"
+    )
     with open(sources_fn, "r") as sources_fd:
         sources = yaml.load(sources_fd, Loader=yaml.SafeLoader)
 
         for key, details in sources.items():
-            yield (
+            if identifier and identifier != key:
+                continue
+
+            location = os.path.join(download_dir, key)
+
+            yield Source(
                 key,
                 details["description"],
                 details["repository_url"],
+                details["repository_branch"],
                 details["author"],
                 details["license"],
-                False,
+                location,
             )
+
+            if identifier and identifier == key:
+                break

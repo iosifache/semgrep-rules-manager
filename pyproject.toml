@@ -11,7 +11,8 @@ packages = [{include = "semgrep-rules-manager"}]
 python = "^3.10"
 click = "^8.1.6"
 pyyaml = "^6.0.1"
-
+gitpython = "^3.1.32"
+rich = "^13.4.2"
 
 [tool.poetry.scripts]
 semgrep-rules-manager = 'semgrep-rules-manager.cli:cli'
