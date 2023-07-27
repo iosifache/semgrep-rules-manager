@@ -42,6 +42,11 @@ class Source:
     def download(self) -> None:
         git.Repo.clone_from(self.repo_url, self.location)
 
+    def update(self) -> None:
+        repo = git.Repo(self.location)
+        origin = repo.remotes.origin
+        origin.pull()
+
     def remove(self) -> None:
         if self.is_downloaded:
             shutil.rmtree(self.location)

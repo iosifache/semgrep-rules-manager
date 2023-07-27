@@ -3,7 +3,13 @@
 import click
 import typing
 
-from core import get_sources, Source, download_sources, delete_sources
+from core import (
+    get_sources,
+    Source,
+    download_sources,
+    delete_sources,
+    sync_sources,
+)
 
 from rich.console import Console
 from rich.table import Table
@@ -146,6 +152,29 @@ def remove(ctx: click.Context, source: str = None) -> None:
         console.print(
             f":white_check_mark: {sources_count} sources were successfully"
             " deleted"
+        )
+
+
+@cli.command
+@click.pass_context
+@click.option(
+    "--source",
+    type=str,
+    help="Identifier of a source",
+)
+def sync(ctx: click.Context, source: str = None) -> None:
+    download_dir = ctx.obj["WORKING_DIR"]
+
+    sources_count = sync_sources(download_dir, source)
+
+    if sources_count == 0:
+        console.print(":white_check_mark: All sources are already synced.")
+    elif sources_count == 1:
+        console.print(":white_check_mark: The source was successfully synced.")
+    else:
+        console.print(
+            f":white_check_mark: {sources_count} sources were successfully"
+            " synced"
         )
 
 
