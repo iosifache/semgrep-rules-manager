@@ -1,0 +1,30 @@
+community:
+  description: Official repository of rules
+  repository: https://github.com/returntocorp/semgrep-rules
+  author: Semgrep
+  license: LGPL 2.1
+gitlab:
+  description: Rules used in GitLab SAST
+  repository: https://gitlab.com/gitlab-org/security-products/sast-rules
+  author: GitLab
+  license: MIT
+trailofbits:
+  description: Rules used in the audits, research and projects of Trail of Bits
+  repository: https://github.com/trailofbits/semgrep-rules
+  author: Trail of Bits
+  license: AGPL-3.0
+0xdea:
+  description: Custom rules written by Marco Ivaldi
+  repository: https://github.com/0xdea/semgrep-rules
+  author: Marco Ivaldi
+  license: MIT
+elttam:
+  description: Custom rules used in elttam
+  repository: https://github.com/elttam/semgrep-rules
+  author: elttam
+  license: MIT
+kondukto:
+  description: Custom rules used in Kondukto
+  repository: https://github.com/kondukto-io/semgrep-rules
+  author: Kondukto
+  license: 
