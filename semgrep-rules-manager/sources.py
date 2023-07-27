@@ -1,10 +1,10 @@
-import yaml
-from dataclasses import dataclass
-import typing
 import os
-import git
 import shutil
+import typing
+from dataclasses import dataclass
 
+import git
+import yaml
 from exception import SemgrepRulesManagerException
 
 

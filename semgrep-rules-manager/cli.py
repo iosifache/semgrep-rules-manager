@@ -1,19 +1,18 @@
 #!/usr/bin/python3
 
-import click
 import typing
 
+import click
 from core import (
-    get_sources,
     Source,
-    download_sources,
     delete_sources,
+    download_sources,
+    get_sources,
     sync_sources,
 )
-
+from exception import SemgrepRulesManagerException
 from rich.console import Console
 from rich.table import Table
-from exception import SemgrepRulesManagerException
 
 console = Console()
 

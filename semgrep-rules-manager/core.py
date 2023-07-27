@@ -1,5 +1,6 @@
-from sources import read_sources, Source
 import typing
+
+from sources import Source, read_sources
 
 
 def _execute_bulk_operation(

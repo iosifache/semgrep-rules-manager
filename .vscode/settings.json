@@ -1,6 +1,12 @@
 {
-    "editor.formatOnSave": true,
     "python.linting.flake8Path": ".venv/bin/flake8",
     "python.formatting.blackPath": ".venv/bin/black",
-    "python.linting.flake8Enabled": true
+    "python.linting.flake8Enabled": true,
+    "[python]": {
+        "editor.formatOnSave": true,
+        "editor.codeActionsOnSave": {
+            "source.organizeImports": true
+        },
+    },
+    "isort.path": ".venv/bin/isort"
 }
