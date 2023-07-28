@@ -22,7 +22,7 @@ gitlab:
   preprocessors:
     - id-standardization
 trailofbits:
-  description: Rules used in the audits, research and projects of Trail of Bits
+  description: Rules used in the audits, research, and projects of Trail of Bits
   repository_url: https://github.com/trailofbits/semgrep-rules
   repository_branch: main
   author: Trail of Bits
