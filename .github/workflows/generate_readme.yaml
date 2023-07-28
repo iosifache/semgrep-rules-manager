@@ -5,11 +5,13 @@ on:
       - main
     paths:
       - sources.yaml
+      - README.template.md
   pull_request:
     branches:
       - main
     paths:
       - sources.yaml
+      - README.template.md
 jobs:
   install-requirements:
     runs-on: ubuntu-latest
