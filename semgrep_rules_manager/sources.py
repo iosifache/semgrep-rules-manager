@@ -131,7 +131,7 @@ class Source:
 
 
 def read_sources(
-    download_dir: str, identifier: str
+    download_dir: str, identifier: str = None
 ) -> typing.Generator[Source, None, None]:
     sources_fn = os.path.join(
         os.path.dirname(__file__), os.pardir, "sources.yaml"

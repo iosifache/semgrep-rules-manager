@@ -10,14 +10,7 @@ All available sources are listed in `sources.yaml`.
 
 The following table is automatically generated and updated by parsing `sources.yaml`:
 
-| Identifier    | Repository URL                                             | Author        | License   |
-|---------------|------------------------------------------------------------|---------------|-----------|
-| `community`   | https://github.com/returntocorp/semgrep-rules              | Semgrep       | LGPL 2.1  |
-| `gitlab`      | https://gitlab.com/gitlab-org/security-products/sast-rules | GitLab        | MIT       |
-| `trailofbits` | https://github.com/trailofbits/semgrep-rules               | Trail of Bits | AGPL-3.0  |
-| `0xdea`       | https://github.com/0xdea/semgrep-rules                     | Marco Ivaldi  | MIT       |
-| `elttam`      | https://github.com/elttam/semgrep-rules                    | elttam        | MIT       |
-| `kondukto`    | https://github.com/kondukto-io/semgrep-rules               | Kondukto      |           |
+<!-- INCLUDED_SOURCES -->
 
 ## Usage
 
