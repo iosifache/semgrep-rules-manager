@@ -1,11 +1,21 @@
 [tool.poetry]
 name = "semgrep_rules_manager"
-version = "0.1.0"
+version = "0.1.0.post1"
 description = "Manager of third-party Semgrep rules"
+keywords = ["semgrep", "semgrep-rules", "semgrep-rules-manager", "sast"]
 authors = ["George-Andrei Iosif <andrei.iosif@canonical.com>"]
+readme = "README.pypi.md"
 license = "MIT"
-readme = "README.md"
 packages = [{include = "semgrep_rules_manager"}]
+repository = "https://github.com/iosifache/semgrep-rules-manager"
+classifiers = [
+    "Topic :: Security",
+    "Topic :: Software Development :: Quality Assurance",
+    "Topic :: System :: Software Distribution",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Environment :: Console",
+    "Operating System :: OS Independent"
+]
 
 [tool.poetry.dependencies]
 python = "^3.10"

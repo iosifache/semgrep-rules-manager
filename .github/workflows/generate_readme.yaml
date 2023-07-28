@@ -4,14 +4,14 @@ on:
     branches:
       - main
     paths:
-      - sources.yaml
+      - semgrep_rules_manager/data/sources.yaml
       - README.template.md
       - .github/workflows/generate_readme.yaml
   pull_request:
     branches:
       - main
     paths:
-      - sources.yaml
+      - semgrep_rules_manager/data/sources.yaml
       - README.template.md
       - .github/workflows/generate_readme.yaml
 jobs:
