@@ -3,7 +3,7 @@
 </p>
 <h2 align="center">Manager of third-party sources of Semgrep rules</h2>
 <p align="center" float="left">
-    <img src="https://snapcraft.io/semgrep-rules-manager/badge.svg" width="150" height="17" alt="Snapcraft's Version"/>
+    <img src="https://snapcraft.io/semgrep-rules-manager/badge.svg" height="17" alt="Snapcraft's Version"/>
     &nbsp; &nbsp;
     <img src="https://img.shields.io/pypi/v/semgrep-rules-manager?label=PyPi&color=1c8223" height="17" alt="PyPI's Version">
 </p>

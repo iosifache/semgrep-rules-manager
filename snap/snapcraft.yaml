@@ -1,0 +1,61 @@
+name: semgrep-rules-manager
+version: '0.1'
+base: core22
+grade: stable
+confinement: strict
+
+parts:
+  semgrep-rules-manager:
+    plugin: python
+    source: .
+    python-packages:
+      - semgrep-rules-manager
+    stage-packages:
+      - git
+
+    # Failed try: Installing via Poetry
+    # override-build: |
+    #   curl -sSL --output /tmp/poetry.py https://install.python-poetry.org
+    #   python3 /tmp/poetry.py
+    #   export PATH=$HOME/.poetry/bin:$PATH
+    #   poetry config virtualenvs.create false
+    #   poetry install
+    #   mkdir -p $SNAPCRAFT_PART_INSTALL/bin
+    #   cp -r ./semgrep_rules_manager $SNAPCRAFT_PART_INSTALL/bin
+    #   chmod +x $SNAPCRAFT_PART_INSTALL/bin/semgrep_rules_manager/cli.py
+
+    # Failed try: Convert from Poetry to setup.py
+    # override-build: |
+    #   export PYTHONHOME=$SNAPCRAFT_PART_INSTALL/usr
+    #   export PYTHONUSERBASE=$SNAPCRAFT_PART_INSTALL
+    #   $SNAPCRAFT_PART_INSTALL/usr/bin/python3 -m pip install --user pip
+    #   $SNAPCRAFT_PART_INSTALL/usr/bin/python3 -m pip install --user dephell[full]
+    #   dephell deps convert --from-path pyproject.toml --from-format poetry --to-path setup.py --to-format setuppy
+    #   snapcraftctl build
+
+apps:
+  semgrep-rules-manager:
+    command: bin/semgrep-rules-manager
+
+    # Failed try: running via Poetry
+    # command: poetry run semgrep-rules-manager
+
+    environment:
+      PATH: $SNAP/usr/bin:$SNAP/bin:$PATH  
+    plugs:
+      - home
+      - network
+
+title: semgrep-rules-manager
+summary: Manager of third-party sources of Semgrep rules
+description: |
+  semgrep-rules-manager is to collect high-quality Semgrep rules from
+  third-party sources. It allows you to examine information about a source,
+  download it, and check for and retrieve remote updates. If a downloaded
+  source no longer meets your requirements, semgrep-rules-manager can handle
+  deletion procedures.
+icon: snap/local/icon.png
+issues:
+  - https://github.com/iosifache/semgrep-rules-manager/issues
+license: MIT
+website: https://github.com/iosifache/semgrep-rules-manager
