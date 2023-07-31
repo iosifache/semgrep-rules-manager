@@ -8,5 +8,6 @@
             "source.organizeImports": true
         },
     },
-    "isort.path": ".venv/bin/isort"
+    "isort.path": ".venv/bin/isort",
+    "markdown-toc.depthFrom": 2
 }
