@@ -2,8 +2,9 @@ name: semgrep-rules-manager
 version: '0.2'
 base: core22
 architectures:
-  - build-on: [amd64, arm64]
-    build-for: all
+  - build-on: amd64
+  - build-on: arm64
+  - build-on: armhf
 grade: stable
 confinement: strict
 
