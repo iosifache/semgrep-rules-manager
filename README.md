@@ -1,5 +1,5 @@
 <p align="center">
-    <img src="logo.png" height="256" alt="Semgrep logo"/>
+    <img src="logo.png" height="256" alt="semgrep-rules-manager logo"/>
 </p>
 <h2 align="center">Manager of third-party sources of Semgrep rules</h2>
 <p align="center" float="left">
