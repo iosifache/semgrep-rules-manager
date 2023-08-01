@@ -48,3 +48,9 @@ kondukto:
   repository_branch: master
   author: Kondukto
   license: 
+dgryski:
+  description: Custom Go rules
+  repository_url: https://github.com/dgryski/semgrep-go
+  repository_branch: master
+  author: Damian Gryski 
+  license: MIT
