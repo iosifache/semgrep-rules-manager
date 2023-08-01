@@ -1,5 +1,5 @@
 <p align="center">
-    <img src="https://raw.githubusercontent.com/returntocorp/semgrep/develop/images/semgrep-logo-light.svg" height="100" alt="Semgrep logo"/>
+    <img src="logo.png" height="256" alt="Semgrep logo"/>
 </p>
 <h2 align="center">Manager of third-party sources of Semgrep rules</h2>
 <p align="center" float="left">
@@ -111,3 +111,9 @@ If you don't want to use a package management, simply clone this repository and 
     $ semgrep-rules-manager --dir /home/iosifache/semgrep-rules remove --source 0xdea
     ✅ The source was successfully deleted.
     ```
+
+## Acknowledgements
+
+Thanks to the [Semgrep team](https://semgrep.dev) for making their work available to the open source community!
+
+This project's logo was created with [Adobe Firefly](https://firefly.adobe.com).
