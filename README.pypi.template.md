@@ -1,5 +1,5 @@
 <p align="center">
-    <img src="https://raw.githubusercontent.com/returntocorp/semgrep/develop/images/semgrep-logo-light.svg" height="100" alt="Semgrep logo"/>
+    <img src="https://raw.githubusercontent.com/iosifache/semgrep-rules-manager/main/logo.png" height="256" alt="semgrep-rules-manager logo"/>
 </p>
 
 ## Description

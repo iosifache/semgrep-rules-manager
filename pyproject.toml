@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "semgrep_rules_manager"
-version = "0.1.0.post1"
+version = "0.1.0.post2"
 description = "Manager of third-party Semgrep rules"
 keywords = ["semgrep", "semgrep-rules", "semgrep-rules-manager", "sast"]
 authors = ["George-Andrei Iosif <andrei.iosif@canonical.com>"]
@@ -34,7 +34,7 @@ tabulate = "^0.9.0"
 
 [tool.poetry.scripts]
 semgrep-rules-manager = 'semgrep_rules_manager.cli:main'
-generate-readmes = 'actions.generate_readme.generate_readmes:main'
+generate-readmes = 'actions.generate_readmes.generate_readmes:main'
 
 [tool.black]
 line-length = 79
