@@ -26,6 +26,7 @@ All sources in `semgrep-rules-manager` are defined in `semgrep_rules_manager/dat
 | `0xdea`       | https://github.com/0xdea/semgrep-rules                     | Marco Ivaldi  | MIT       |
 | `elttam`      | https://github.com/elttam/semgrep-rules                    | elttam        | MIT       |
 | `kondukto`    | https://github.com/kondukto-io/semgrep-rules               | Kondukto      |           |
+| `dgryski`     | https://github.com/dgryski/semgrep-go                      | Damian Gryski | MIT       |
 
 ## Installation
 

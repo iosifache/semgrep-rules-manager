@@ -18,6 +18,7 @@ The goal of **`semgrep-rules-manager`** is to collect **high-quality Semgrep rul
 | `0xdea`       | https://github.com/0xdea/semgrep-rules                     | Marco Ivaldi  | MIT       |
 | `elttam`      | https://github.com/elttam/semgrep-rules                    | elttam        | MIT       |
 | `kondukto`    | https://github.com/kondukto-io/semgrep-rules               | Kondukto      |           |
+| `dgryski`     | https://github.com/dgryski/semgrep-go                      | Damian Gryski | MIT       |
 
 ## Read Further
 
