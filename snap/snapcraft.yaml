@@ -7,7 +7,6 @@ architectures:
 grade: stable
 confinement: strict
 
-
 parts:
   semgrep-rules-manager:
     plugin: python
