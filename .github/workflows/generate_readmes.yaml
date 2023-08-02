@@ -7,6 +7,7 @@ on:
       - semgrep_rules_manager/data/sources.yaml
       - README.template.md
       - README.pypi.template.md
+      - actions/generate_readmes/generate_readmes.py
       - .github/workflows/generate_readmes.yaml
   pull_request:
     branches:
@@ -15,6 +16,7 @@ on:
       - semgrep_rules_manager/data/sources.yaml
       - README.template.md
       - README.pypi.template.md
+      - actions/generate_readmes/generate_readmes.py
       - .github/workflows/generate_readmes.yaml
 jobs:
   install-requirements:
