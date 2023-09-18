@@ -54,3 +54,9 @@ dgryski:
   repository_branch: master
   author: Damian Gryski 
   license: MIT
+dotta:
+  description: Rules developed while doing pentest on web and mobile apps
+  repository_url: https://github.com/federicodotta/semgrep-rules
+  repository_branch: main
+  author: Federico Dotta
+  license: MIT
