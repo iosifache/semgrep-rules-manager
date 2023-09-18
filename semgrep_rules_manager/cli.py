@@ -63,12 +63,19 @@ def _create_description_of_source(source: Source) -> str:
 
     return f"""[bold]Identifier[/bold]: {source.identifier}
 [bold]Description[/bold]: {source.description}
+[bold]Rules per language[/bold]: {_get_plaintext_rules(source)}
 [bold]Resository URL[/bold]: {source.repo_url}
 [bold]Repository brach[/bold]: {source.repo_brach}
 [bold]Author[/bold]: {source.author}
 [bold]License[/bold]: {source.license}
 [bold]Downloaded[/bold]: {download_text}
 [bold]Synced[/bold]: {sync_text}"""
+
+
+def _get_plaintext_rules(source: Source) -> str:
+    rules = source.count_rules()
+
+    return ", ".join([f"{count} for {lang}" for lang, count in rules.items()])
 
 
 def _create_sync_text(source: Source) -> str:

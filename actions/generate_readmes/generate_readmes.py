@@ -3,12 +3,7 @@
 import typing
 
 import tabulate
-import git
-import tempfile
-import shutil
-import pathlib
 import collections
-import yaml
 
 from semgrep_rules_manager.sources import Source, read_sources
 
@@ -17,7 +12,7 @@ def generate_table(sources: typing.List[Source]) -> str:
     table = [
         [
             f"`{source.identifier}`",
-            generate_rules_count_from_url(source.repo_url),
+            stringify_lang_counter(source.count_rules()),
             source.author,
             source.license,
         ]
@@ -46,44 +41,8 @@ def generate_readme(template_readme: str, table: str) -> str:
             readme_file.write(content)
 
 
-def generate_rules_count_from_url(repo_url: str) -> str:
-    temp_dir_fn = tempfile.mkdtemp()
-
-    git.Repo.clone_from(repo_url, temp_dir_fn)
-    details = generate_rules_count_from_dir(temp_dir_fn)
-    shutil.rmtree(temp_dir_fn)
-
-    return details
-
-
-def generate_rules_count_from_dir(location: str) -> str:
-    counter = collections.Counter()
-    for fn in pathlib.Path(location).rglob("*"):
-        if fn.name.endswith(".yaml") or fn.name.endswith(".yml"):
-            counter += process_rules_file(fn.resolve())
-
-    return stringify_lang_counter(counter)
-
-
-def process_rules_file(rules_file: str) -> collections.Counter:
-    with open(rules_file, "r") as rules_fd:
-        try:
-            rules = yaml.safe_load(rules_fd)
-
-            langs = []
-            for rule in rules["rules"]:
-                langs.extend(rule["languages"])
-
-                return collections.Counter(langs)
-
-        except (KeyError, yaml.composer.ComposerError):
-            return collections.Counter([])
-
-
 def stringify_lang_counter(counter: collections.Counter) -> str:
-    return ", ".join(
-        [f"`{lang}`: {count}" for lang, count in counter.most_common()]
-    )
+    return ", ".join([f"`{lang}`: {count}" for lang, count in counter.items()])
 
 
 def main() -> None:
