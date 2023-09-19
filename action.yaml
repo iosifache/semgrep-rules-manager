@@ -1,0 +1,38 @@
+name: Semgrep x semgrep-rules-manager
+description: Runs Semgrep with all rules from semgrep-rules-manager.
+author: George-Andrei Iosif
+branding:
+  icon: search
+  color: green
+inputs:
+  severity:
+    description: The minimum severity (INFO, WARNING, or ERROR) of an alert to be reported
+    required: false
+    default: INFO
+runs:
+  using: 'composite'
+  steps:
+    - name: Download additional rules from third-party rules
+      shell: bash
+      run: |
+        pip install semgrep-rules-manager
+        mkdir /home/semgrep/rules
+        semgrep-rules-manager --dir /home/semgrep/rules download
+    - name: Install Semgrep
+      id: semgrep-install
+      shell: bash
+      run: |
+        pip install semgrep
+    - name: Use the current repository
+      uses: actions/checkout@v3
+    - name: Run Semgrep with the additional rules
+      shell: bash
+      run: |
+        semgrep ci --severity ${{ inputs.severity }} --sarif --output=semgrep.sarif
+      env:
+        SEMGREP_RULES: "/home/semgrep/rules"
+    - name: Upload SARIF file for GitHub Advanced Security Dashboard
+      uses: github/codeql-action/upload-sarif@v2
+      with:
+        sarif_file: semgrep.sarif
+      if: always()
