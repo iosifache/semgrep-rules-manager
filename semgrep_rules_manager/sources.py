@@ -4,13 +4,12 @@ import shutil
 import typing
 from abc import abstractmethod
 from dataclasses import dataclass
-import tempfile
-import copy
 import pathlib
 import git
 import collections
 import yaml
 
+from semgrep_rules_manager.rules_file import RulesFile
 from semgrep_rules_manager.exception import SemgrepRulesManagerException
 
 
@@ -132,13 +131,13 @@ class Source:
         if self.is_downloaded:
             shutil.rmtree(self.location)
 
-    def count_rules(self) -> typing.Dict[str, int]:
+    def count_rules(self, beautified: bool = False) -> typing.Dict[str, int]:
         downloaded = self.is_downloaded
 
         if not downloaded:
             self.download()
 
-        rules_count = self._count_rules_per_lang()
+        rules_count = self._count_rules_per_lang(beautified)
 
         if not downloaded:
             self.remove()
@@ -146,33 +145,18 @@ class Source:
         return rules_count
 
     def _count_rules_per_lang(
-        self,
+        self, beautified: bool = False
     ) -> typing.Dict[str, int]:
         counter = collections.Counter()
-        for fn in pathlib.Path(self.location).rglob("*"):
-            if fn.name.endswith(".yaml") or fn.name.endswith(".yml"):
-                counter += self._process_rules_in_file_per_lang(
-                    fn.resolve(),
-                )
+        for rules_file in self._get_rule_files():
+            counter += rules_file.get_rules_per_lang(beautified)
 
         return {lang: count for lang, count in counter.most_common()}
 
-    def _process_rules_in_file_per_lang(
-        self,
-        rules_file: str,
-    ) -> collections.Counter:
-        with open(rules_file, "r") as rules_fd:
-            try:
-                rules = yaml.safe_load(rules_fd)
-
-                langs = []
-                for rule in rules["rules"]:
-                    langs.extend(rule["languages"])
-
-                    return collections.Counter(langs)
-
-            except (KeyError, yaml.composer.ComposerError):
-                return collections.Counter([])
+    def _get_rule_files(self) -> typing.Generator[RulesFile, None, None]:
+        for fn in pathlib.Path(self.location).rglob("*"):
+            if fn.name.endswith(".yaml") or fn.name.endswith(".yml"):
+                yield RulesFile(fn.resolve())
 
 
 def read_sources(

@@ -12,7 +12,7 @@ def generate_table(sources: typing.List[Source]) -> str:
     table = [
         [
             f"`{source.identifier}`",
-            stringify_lang_counter(source.count_rules()),
+            stringify_lang_counter(source.count_rules(beautified=True)),
             source.author,
             source.license,
         ]
@@ -21,7 +21,7 @@ def generate_table(sources: typing.List[Source]) -> str:
 
     return tabulate.tabulate(
         table,
-        ["Identifier", "Included Rules per Language", "Author", "License"],
+        ["Identifier", "Rules per Language", "Author", "License"],
         tablefmt="github",
     )
 
@@ -42,7 +42,9 @@ def generate_readme(template_readme: str, table: str) -> str:
 
 
 def stringify_lang_counter(counter: collections.Counter) -> str:
-    return ", ".join([f"`{lang}`: {count}" for lang, count in counter.items()])
+    return ", ".join(
+        [f"{count} for {lang}" for lang, count in counter.items()]
+    )
 
 
 def main() -> None:

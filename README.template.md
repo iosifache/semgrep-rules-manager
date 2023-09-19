@@ -83,7 +83,7 @@ If you don't want to use a package management, simply clone this repository and 
     $ semgrep-rules-manager --dir /home/iosifache/semgrep-rules list --source 0xdea
     Identifier: 0xdea
     Description: Custom rules written by Marco Ivaldi
-    Rules per language: 40 for cpp, 39 for c, 1 for generic
+    Rules per language: 40 for C++, 39 for C, 1 for Generic
     Resository URL: https://github.com/0xdea/semgrep-rules
     Repository brach: main
     Author: Marco Ivaldi

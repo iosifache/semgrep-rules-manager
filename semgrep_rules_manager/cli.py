@@ -73,7 +73,7 @@ def _create_description_of_source(source: Source) -> str:
 
 
 def _get_plaintext_rules(source: Source) -> str:
-    rules = source.count_rules()
+    rules = source.count_rules(beautified=True)
 
     return ", ".join([f"{count} for {lang}" for lang, count in rules.items()])
 
