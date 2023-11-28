@@ -26,7 +26,7 @@ jobs:
       - name: Install Python
         uses: actions/setup-python@v4
       - name: Install Poetry
-        uses: abatilo/actions-poetry@v2
+        uses: abatilo/actions-poetry@437d4fa27baf74d89b789ba2d8cae97dd2365feb
       - name: Setup a local virtual environment
         run: |
           poetry config virtualenvs.create true --local
