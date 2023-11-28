@@ -7,6 +7,10 @@
     &nbsp; &nbsp;
     <img src="https://img.shields.io/pypi/v/semgrep-rules-manager?label=PyPi&color=1c8223" height="17" alt="PyPI's Version">
     &nbsp; &nbsp;
+    <a href="https://semgrep.iosifache.me">
+        <img src="https://img.shields.io/badge/Rules_search_engine-available-1c8223" height="17" alt="Available rules search engine">
+    </a>
+    &nbsp; &nbsp;
     <a href="https://github.com/marketplace/actions/semgrep-x-semgrep-rules-manager">
         <img src="https://img.shields.io/badge/Github_Action-available-1c8223" height="17" alt="Available GitHub Action">
     </a>
@@ -18,7 +22,11 @@ Although that there is an open source repository containing community rules, som
 
 The goal of **`semgrep-rules-manager`** is to collect **high-quality Semgrep rules from third-party sources**. It allows you to examine information about a source, download it, and check for and retrieve remote updates. If a downloaded source no longer meets your requirements, `semgrep-rules-manager` can handle deletion procedures.
 
-## Included Sources
+## Included rules
+
+[This online search engine](https://semgrep.iosifache.me) allows you to explore the rules included in `semgrep-rules-manager`.
+
+## Included sources
 
 All sources in `semgrep-rules-manager` are defined in `semgrep_rules_manager/data/sources.yaml`. They are listed in the table below.
 

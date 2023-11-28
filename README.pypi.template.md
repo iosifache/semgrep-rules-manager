@@ -8,10 +8,14 @@ Despite the fact that there is an open source repository containing community ru
 
 The goal of **`semgrep-rules-manager`** is to collect **high-quality Semgrep rules from third-party sources**. It allows you to examine information about a source, download it, and check for and retrieve remote updates. If a downloaded source no longer meets your requirements, `semgrep-rules-manager` can handle deletion procedures.
 
-## Included Sources
+## Included rules
+
+[This online search engine](https://semgrep.iosifache.me) allows you to explore the rules included in `semgrep-rules-manager`.
+
+## Included sources
 
 <!-- INCLUDED_SOURCES -->
 
-## Read Further
+## Read more
 
 This is only an excerpt from the [`README.md` hosted on GitHub](https://github.com/iosifache/semgrep-rules-manager#readme).
