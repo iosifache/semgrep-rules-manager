@@ -5,6 +5,7 @@ community:
   ignored:
     # YAML files that are not rules.
     - stats
+    - template.yaml
   author: Semgrep
   license: LGPL 2.1
 gitlab:

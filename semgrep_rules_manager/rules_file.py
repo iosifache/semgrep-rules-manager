@@ -1,33 +1,49 @@
 from dataclasses import dataclass
 import collections
 import yaml
+import typing
 
 
-from helpers import translate_lang_id_to_name
+from semgrep_rules_manager.helpers import translate_lang_id_to_name
+from semgrep_rules_manager.rule import Rule
+from semgrep_rules_manager.exception import SemgrepRulesManagerException
 
 
 @dataclass
 class RulesFile:
     location: str
+    rules: typing.List[Rule]
+
+    def __init__(self, location: str) -> None:
+        with open(location, "r", encoding="utf-8") as rules_fd:
+            try:
+                raw_rules = yaml.safe_load(rules_fd)
+
+                self.rules = [
+                    Rule(rule["languages"])
+                    for rule in raw_rules.get("rules", [])
+                    if rule.get("languages", False)
+                ]
+
+            except (KeyError, yaml.composer.ComposerError):
+                raise InvalidRulesFileException()
+
+        self.location = location
 
     def get_rules_per_lang(
         self, beautified: bool = False
     ) -> collections.Counter:
-        with open(self.location, "r", encoding="utf-8") as rules_fd:
-            try:
-                rules = yaml.safe_load(rules_fd)
+        langs = []
+        for rule in self.rules:
+            languages = (
+                [translate_lang_id_to_name(lang) for lang in rule.languages]
+                if beautified
+                else rule.languages
+            )
+            langs.extend(languages)
 
-                langs = []
-                for rule in rules["rules"]:
-                    languages = rule["languages"]
-                    if beautified:
-                        languages = [
-                            translate_lang_id_to_name(lang)
-                            for lang in languages
-                        ]
-                    langs.extend(languages)
+        return collections.Counter(langs)
 
-                    return collections.Counter(langs)
 
-            except (KeyError, yaml.composer.ComposerError):
-                return collections.Counter([])
+class InvalidRulesFileException(SemgrepRulesManagerException):
+    """The rule files is invalid and cannot be loaded."""

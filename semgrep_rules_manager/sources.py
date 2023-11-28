@@ -50,7 +50,9 @@ class IDStandardizationPreprocessor(Preprocessor):
     def _get_all_yaml_files(self) -> typing.Generator[str, None, None]:
         for root, _, files in os.walk(self.location):
             for file in files:
-                if file.endswith(".yaml") or file.endswith(".yml"):
+                if (
+                    file.endswith(".yaml") or file.endswith(".yml")
+                ) and not file.startswith("."):
                     yield os.path.join(root, file)
 
 
@@ -155,8 +157,15 @@ class Source:
 
     def _get_rule_files(self) -> typing.Generator[RulesFile, None, None]:
         for fn in pathlib.Path(self.location).rglob("*"):
-            if fn.name.endswith(".yaml") or fn.name.endswith(".yml"):
-                yield RulesFile(fn.resolve())
+            if (
+                fn.name.endswith(".yaml") or fn.name.endswith(".yml")
+            ) and not fn.name.startswith("."):
+                try:
+                    rule_file = RulesFile(fn.resolve())
+                except SemgrepRulesManagerException:
+                    continue
+                else:
+                    yield rule_file
 
 
 def read_sources(
