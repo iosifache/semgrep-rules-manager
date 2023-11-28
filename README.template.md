@@ -10,7 +10,7 @@
 
 ## Description
 
-Despite the fact that there is an open source repository containing community rules, some Semgrep users prefer to keep their custom rules in repositories that they manage.
+Although that there is an open source repository containing community rules, some Semgrep users prefer to keep their custom rules in repositories that they manage.
 
 The goal of **`semgrep-rules-manager`** is to collect **high-quality Semgrep rules from third-party sources**. It allows you to examine information about a source, download it, and check for and retrieve remote updates. If a downloaded source no longer meets your requirements, `semgrep-rules-manager` can handle deletion procedures.
 
@@ -84,7 +84,7 @@ If you don't want to use a package management, simply clone this repository and 
     Identifier: 0xdea
     Description: Custom rules written by Marco Ivaldi
     Rules per language: 40 for C++, 39 for C, 1 for Generic
-    Resository URL: https://github.com/0xdea/semgrep-rules
+    Repository URL: https://github.com/0xdea/semgrep-rules
     Repository brach: main
     Author: Marco Ivaldi
     License: MIT

@@ -94,7 +94,7 @@ If you don't want to use a package management, simply clone this repository and 
     Identifier: 0xdea
     Description: Custom rules written by Marco Ivaldi
     Rules per language: 40 for C++, 39 for C, 1 for Generic
-    Resository URL: https://github.com/0xdea/semgrep-rules
+    Repository URL: https://github.com/0xdea/semgrep-rules
     Repository brach: main
     Author: Marco Ivaldi
     License: MIT

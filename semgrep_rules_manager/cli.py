@@ -64,7 +64,7 @@ def _create_description_of_source(source: Source) -> str:
     return f"""[bold]Identifier[/bold]: {source.identifier}
 [bold]Description[/bold]: {source.description}
 [bold]Rules per language[/bold]: {_get_plaintext_rules(source)}
-[bold]Resository URL[/bold]: {source.repo_url}
+[bold]Repository URL[/bold]: {source.repo_url}
 [bold]Repository brach[/bold]: {source.repo_brach}
 [bold]Author[/bold]: {source.author}
 [bold]License[/bold]: {source.license}
