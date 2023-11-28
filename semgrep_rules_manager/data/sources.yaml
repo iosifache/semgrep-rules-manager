@@ -60,3 +60,9 @@ dotta:
   repository_branch: main
   author: Federico Dotta
   license: MIT
+hashicorp:
+  description: HashiCorp-related rules
+  repository_url: https://github.com/hashicorp-forge/semgrep-rules
+  repository_branch: main
+  author: Hashicorp
+  license: MPL-2.0
