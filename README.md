@@ -29,31 +29,31 @@ The goal of **`semgrep-rules-manager`** is to collect **high-quality Semgrep rul
 
 flowchart LR
 
-source[("`Source code
-    (*in a supported language*)`")] 
+source[("Source code
+(in a supported language)")] 
 -->|submitted locally via| cli[Command-line interface]
 
-source -->|processed on a pipeline with| cicd["`CI/CD action
-    (*eventually the one provided in this repository*)`"]
+source -->|processed on a pipeline with| cicd["CI/CD action
+    (eventually the one provided in this repository)"]
 
 cli -->  lang-parsing
 
 cicd -->  lang-parsing
 
-rules[("`Rules
-    (*in the same language*)`")] --> lang-parsing
+rules[("Rules
+    (in the same language)")] --> lang-parsing
 
 subgraph core[Semgrep OSS Core]
 
  lang-parsing[Language parsing] -. implemented with .-> tree-sitter[Tree-sitter]
 
- lang-parsing -->|generates| concrete-sts["`Generation of
+ lang-parsing -->|generates| concrete-sts["Generation of
 concrete syntax trees
-(*language dependent*)`"]
+(language dependent)"]
 
-concrete-sts -->|abstracted to| generic-sts["`Generation of
+concrete-sts -->|abstracted to| generic-sts["Generation of
 generic syntax trees
-(*language agnostic*)`"]
+(language agnostic)"]
 
 generic-sts -->|fed into| rule-matching[Rule matching]
 
