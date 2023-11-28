@@ -5,7 +5,7 @@ import typing
 
 
 from semgrep_rules_manager.helpers import translate_lang_id_to_name
-from semgrep_rules_manager.rule import Rule
+from semgrep_rules_manager.rule import Rule, Severity
 from semgrep_rules_manager.exception import SemgrepRulesManagerException
 
 
@@ -20,7 +20,12 @@ class RulesFile:
                 raw_rules = yaml.safe_load(rules_fd)
 
                 self.rules = [
-                    Rule(rule["languages"])
+                    Rule(
+                        rule.get("id", ""),
+                        rule.get("languages", ""),
+                        rule.get("message", ""),
+                        Severity[rule.get("severity", Severity.UNKNOWN.name)],
+                    )
                     for rule in raw_rules.get("rules", [])
                     if rule.get("languages", False)
                 ]

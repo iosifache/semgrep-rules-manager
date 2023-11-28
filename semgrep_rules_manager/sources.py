@@ -150,12 +150,12 @@ class Source:
         self, beautified: bool = False
     ) -> typing.Dict[str, int]:
         counter = collections.Counter()
-        for rules_file in self._get_rule_files():
+        for rules_file in self.get_rule_files():
             counter += rules_file.get_rules_per_lang(beautified)
 
         return {lang: count for lang, count in counter.most_common()}
 
-    def _get_rule_files(self) -> typing.Generator[RulesFile, None, None]:
+    def get_rule_files(self) -> typing.Generator[RulesFile, None, None]:
         for fn in pathlib.Path(self.location).rglob("*"):
             if (
                 fn.name.endswith(".yaml") or fn.name.endswith(".yml")
