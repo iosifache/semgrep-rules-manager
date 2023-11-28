@@ -3,9 +3,13 @@
 </p>
 <h2 align="center">Manager of third-party sources of Semgrep rules</h2>
 <p align="center" float="left">
-    <img src="https://snapcraft.io/semgrep-rules-manager/badge.svg" height="17" alt="Snapcraft's Version"/>
+    <a href="https://snapcraft.io/semgrep-rules-manager">
+        <img src="https://snapcraft.io/semgrep-rules-manager/badge.svg" height="17" alt="Snapcraft's Version"/>
+    </a>
     &nbsp; &nbsp;
-    <img src="https://img.shields.io/pypi/v/semgrep-rules-manager?label=PyPi&color=1c8223" height="17" alt="PyPI's Version">
+    <a href="https://pypi.org/project/semgrep_rules_manager/">
+        <img src="https://img.shields.io/pypi/v/semgrep-rules-manager?label=PyPi&color=1c8223" height="17" alt="PyPI's Version">
+    </a>
     &nbsp; &nbsp;
     <a href="https://semgrep.iosifache.me">
         <img src="https://img.shields.io/badge/Rules_search_engine-available-1c8223" height="17" alt="Available rules search engine">
@@ -101,7 +105,7 @@ The tool is available as [a GitHub action](https://github.com/marketplace/action
 
 ## Local installation
 
-Snap (`snap install semgrep-rules-manager`) or pip (`pip install semgrep-rules-manager`) are the simplest ways to install `semgrep-rules-manager`.
+[Snap](https://snapcraft.io/semgrep-rules-manager) (`snap install semgrep-rules-manager`) or [pip](https://pypi.org/project/semgrep_rules_manager/) (`pip install semgrep-rules-manager`) are the simplest ways to install `semgrep-rules-manager`.
 
 [![Get it from the Snap Store](https://snapcraft.io/static/images/badges/en/snap-store-black.svg)](https://snapcraft.io/semgrep-rules-manager)
 
