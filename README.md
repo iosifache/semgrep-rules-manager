@@ -22,6 +22,52 @@ Although that there is an open source repository containing community rules, som
 
 The goal of **`semgrep-rules-manager`** is to collect **high-quality Semgrep rules from third-party sources**. It allows you to examine information about a source, download it, and check for and retrieve remote updates. If a downloaded source no longer meets your requirements, `semgrep-rules-manager` can handle deletion procedures.
 
+## How it works
+
+```mermaid
+%%{init: {"theme": "neutral", "flowchart": {"htmlLabels": false}}}%%
+
+flowchart LR
+
+source[("`Source code
+    (*in a supported language*)`")] 
+-->|submitted locally via| cli[Command-line interface]
+
+source -->|processed on a pipeline with| cicd["`CI/CD action
+    (*eventually the one provided in this repository*)`"]
+
+cli -->  lang-parsing
+
+cicd -->  lang-parsing
+
+rules[("`Rules
+    (*in the same language*)`")] --> lang-parsing
+
+subgraph core[Semgrep OSS Core]
+
+ lang-parsing[Language parsing] -. implemented with .-> tree-sitter[Tree-sitter]
+
+ lang-parsing -->|generates| concrete-sts["`Generation of
+concrete syntax trees
+(*language dependent*)`"]
+
+concrete-sts -->|abstracted to| generic-sts["`Generation of
+generic syntax trees
+(*language agnostic*)`"]
+
+generic-sts -->|fed into| rule-matching[Rule matching]
+
+end
+
+rule-matching -->|generates| warnings[(Warnings)]
+
+subgraph semgrep-rules-manager
+    yaml[(YAML definition for sources)] --> index-parsing[Definition parsing] --> git-cloning[Git remote cloning]
+end
+
+semgrep-rules-manager -->|provides| rules
+```
+
 ## Included rules
 
 [This online search engine](https://semgrep.iosifache.me) allows you to explore the rules included in `semgrep-rules-manager`.
