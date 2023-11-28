@@ -6,11 +6,15 @@
     <img src="https://snapcraft.io/semgrep-rules-manager/badge.svg" height="17" alt="Snapcraft's Version"/>
     &nbsp; &nbsp;
     <img src="https://img.shields.io/pypi/v/semgrep-rules-manager?label=PyPi&color=1c8223" height="17" alt="PyPI's Version">
+    &nbsp; &nbsp;
+    <a href="https://github.com/marketplace/actions/semgrep-x-semgrep-rules-manager">
+        <img src="https://img.shields.io/badge/Github_Action-available-1c8223" height="17" alt="Available GitHub Action">
+    </a>
 </p>
 
 ## Description
 
-Despite the fact that there is an open source repository containing community rules, some Semgrep users prefer to keep their custom rules in repositories that they manage.
+Although that there is an open source repository containing community rules, some Semgrep users prefer to keep their custom rules in repositories that they manage.
 
 The goal of **`semgrep-rules-manager`** is to collect **high-quality Semgrep rules from third-party sources**. It allows you to examine information about a source, download it, and check for and retrieve remote updates. If a downloaded source no longer meets your requirements, `semgrep-rules-manager` can handle deletion procedures.
 
@@ -30,7 +34,18 @@ All sources in `semgrep-rules-manager` are defined in `semgrep_rules_manager/dat
 | `dotta`       | 7 for PHP, 3 for Kotlin, 1 for Java                                                                                                                                                                                                                                                                                                                                                              | Federico Dotta | MIT       |
 | `hashicorp`   | 4 for Terraform, 1 for Generic                                                                                                                                                                                                                                                                                                                                                                   | Hashicorp      | MPL-2.0   |
 
-## Installation
+## Installation in CI
+
+### GitHub
+
+The tool is available as [a GitHub action](https://github.com/marketplace/actions/semgrep-x-semgrep-rules-manager) and can be easily embedded into a repository to run Semgrep with all rules available in `semgrep-rules-manager`. Just embed the following step into your workflow definition file: 
+
+```yaml
+- name: Semgrep x semgrep-rules-manager
+  uses: iosifache/semgrep-rules-manager
+```
+
+## Local installation
 
 Snap (`snap install semgrep-rules-manager`) or pip (`pip install semgrep-rules-manager`) are the simplest ways to install `semgrep-rules-manager`.
 
