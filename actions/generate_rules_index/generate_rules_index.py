@@ -7,6 +7,8 @@ import typing
 from semgrep_rules_manager.sources import read_sources, Source
 from semgrep_rules_manager.helpers import translate_lang_id_to_name
 
+INDEX_NAME = "RULES_INDEX.md"
+
 
 def create_table_with_rules(sources: typing.Iterable[Source]) -> str:
     table = []
@@ -42,7 +44,7 @@ def create_table_with_rules(sources: typing.Iterable[Source]) -> str:
 
 
 def dump_to_index_file(table: str) -> None:
-    with open("RULES_INDEX.md", "w", encoding="utf-8") as rules_index_file:
+    with open(INDEX_NAME, "w", encoding="utf-8") as rules_index_file:
         rules_index_file.write(table)
 
 
