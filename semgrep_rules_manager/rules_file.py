@@ -77,8 +77,6 @@ def translate_lang_id_to_name(identifier: str) -> str:
         if identifier in value:
             return key
 
-    print(identifier)
-    return "regex"
     raise LanguageIDNotFoundException()
 
 
