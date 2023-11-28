@@ -52,7 +52,7 @@ class RulesFile:
     def get_rules_per_lang(
         self, beautified: bool = False
     ) -> collections.Counter:
-        with open(self.location, "r") as rules_fd:
+        with open(self.location, "r", encoding="utf-8") as rules_fd:
             try:
                 rules = yaml.safe_load(rules_fd)
 

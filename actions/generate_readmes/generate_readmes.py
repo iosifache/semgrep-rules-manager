@@ -33,11 +33,11 @@ def write_readmes(table: str) -> str:
 
 def generate_readme(template_readme: str, table: str) -> str:
     output_file = template_readme.replace(".template", "")
-    with open(template_readme, "r") as template_file:
+    with open(template_readme, "r", encoding="utf-8") as template_file:
         content = template_file.read()
         content = content.replace("<!-- INCLUDED_SOURCES -->", table)
 
-        with open(output_file, "w") as readme_file:
+        with open(output_file, "w", encoding="utf-8") as readme_file:
             readme_file.write(content)
 
 

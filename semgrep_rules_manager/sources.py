@@ -36,7 +36,7 @@ class IDStandardizationPreprocessor(Preprocessor):
             self.process_content(file)
 
     def process_content(self, filename: str) -> None:
-        with open(filename, "r+") as file:
+        with open(filename, "r+", encoding="utf-8") as file:
             content = file.read()
 
             new_content = re.sub(
@@ -163,7 +163,7 @@ def read_sources(
     download_dir: str, identifier: str = None
 ) -> typing.Generator[Source, None, None]:
     sources_fn = os.path.join(os.path.dirname(__file__), "data/sources.yaml")
-    with open(sources_fn, "r") as sources_fd:
+    with open(sources_fn, "r", encoding="utf-8") as sources_fd:
         sources = yaml.load(sources_fd, Loader=yaml.SafeLoader)
 
         yield_once = False
