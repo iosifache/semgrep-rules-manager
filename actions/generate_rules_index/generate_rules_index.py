@@ -20,7 +20,7 @@ def create_index_from_rules(sources: typing.Iterable[Source]) -> list:
                         "identifier": f"{rule.identifier}",
                         "message": rule.message,
                         "parent_source": f"{source.identifier}",
-                        "severity": f"`{rule.severity.name}`",
+                        "severity": f"{rule.severity.name}",
                         "languages": ", ".join(
                             [
                                 translate_lang_id_to_name(lang)
