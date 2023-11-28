@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>semgrep-rules-manager's search engine</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="src/style.css">
+    <link
+        href="https://unpkg.com/tabulator-tables/dist/css/tabulator_semanticui.min.css"
+        rel="stylesheet">
+
+    <script type="text/javascript"
+        src="https://unpkg.com/tabulator-tables/dist/js/tabulator.min.js"></script>
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        body,
+        html {
+            margin: 0;
+            padding: 10px;
+            font-family: 'Ubuntu', sans-serif;
+        }
+
+        h1 {
+            display: inline;
+            margin-right: 10px;
+        }
+
+        .github-button {
+            display: inline;
+        }
+
+        .searchbox {
+            width: calc(100% - 20px);
+            padding: 10px;
+            font-size: 18px;
+            border: none;
+            background-color: #ecf0f1;
+            color: #000000;
+            margin: 20px 0;
+        }
+
+        .searchbox:focus {
+            outline: none;
+        }
+    </style>
+</head>
+
+<body>
+    <h1><code>semgrep-rules-manager</code>'s search engine</h1>
+
+    <a class="github-button"
+        href="https://github.com/iosifache/semgrep-rules-manager"
+        data-color-scheme="no-preference: light; light: light; dark: dark;"
+        data-icon="octicon-star" data-show-count="true"
+        aria-label="Star iosifache/semgrep-rules-manager on GitHub">Star</a>
+    <a class="github-button"
+        href="https://github.com/iosifache/semgrep-rules-manager/issues"
+        data-color-scheme="no-preference: light; light: light; dark: dark;"
+        data-icon="octicon-issue-opened" data-show-count="true"
+        aria-label="Issue iosifache/semgrep-rules-manager on GitHub">Issue</a>
+
+    <p>This search engine allows you to search through all of the Semgrep rules
+        stored in <a
+            href="https://github.com/iosifache/semgrep-rules-manager"><code>semgrep-rules-manager</code></a>.
+        Even though the Semgrep team generated and officially supports the
+        <a
+            href="https://github.com/returntocorp/semgrep-rules"><code>community</code></a>
+        source,
+        all others are graciously provided by the community.
+    </p>
+
+    <input type="text" id="search" name="search" class="searchbox"
+        placeholder="Search terms">
+
+    <div id="table"></div>
+
+    <script>
+        // Fetch the data
+        fetch('https://raw.githubusercontent.com/iosifache/semgrep-rules-manager/main/semgrep_rules_manager/data/index.json')
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error("HTTP error code: " + response.status);
+                }
+                return response.json();
+            })
+            .then(json => {
+                // Create the table
+                var table = new Tabulator("#table", {
+                    data: json,
+                    columns: [
+                        { title: "Identifier", field: "identifier" },
+                        {
+                            title: "Parent source", field: "parent_source", formatter: function (cell, formatterParams, onRendered) {
+                                return "<code>" + cell.getValue() + "</code>";
+                            },
+                        },
+                        {
+                            title: "Severity", field: "severity", formatter: function (cell, formatterParams, onRendered) {
+                                return "<code>" + cell.getValue() + "</code>";
+                            },
+                        },
+                        { title: "Languages", field: "languages" },
+                        { title: "Message", field: "message", formatter: "textarea" },
+                    ],
+                    initialSort: [
+                        { column: "identifier", dir: "asc" },
+                    ],
+                    layout: "fitDataStretch",
+                    pagination: "local",
+                    paginationSize: 10,
+                    paginationSizeSelector: [10, 50, 100],
+                    paginationCounter: "rows",
+                });
+
+                // Add a listener to the search box for full-text search
+                // Thanks, https://github.com/olifolkerd/tabulator/issues/505#issuecomment-754660925!
+                const input = document.getElementById("search");
+                input.addEventListener("keyup", function () {
+                    table.setFilter(matchAny, { value: input.value });
+                    if (input.value == " ") {
+                        table.clearFilter()
+                    }
+                });
+
+                function matchAny(data, filterParams) {
+                    var match = false;
+                    const regex = RegExp(filterParams.value, 'i');
+
+                    for (var key in data) {
+                        if (regex.test(data[key]) == true) {
+                            match = true;
+                        }
+                    }
+                    return match;
+                }
+            })
+            .catch(function () { })
+    </script>
+</body>
+
+</html>
