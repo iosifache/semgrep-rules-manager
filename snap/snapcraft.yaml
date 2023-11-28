@@ -1,5 +1,5 @@
 name: semgrep-rules-manager
-version: '0.2'
+version: '0.3'
 base: core22
 architectures:
   - build-on: amd64
