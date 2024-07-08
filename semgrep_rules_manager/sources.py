@@ -102,7 +102,7 @@ class Source:
         return repo.rev_parse("origin/" + self.repo_brach).hexsha
 
     def download(self) -> None:
-        git.Repo.clone_from(self.repo_url, self.location)
+        git.Repo.clone_from(self.repo_url, self.location,multi_options=['--depth=1'])
 
         self._preprocess()
         self._remove_ignored()
