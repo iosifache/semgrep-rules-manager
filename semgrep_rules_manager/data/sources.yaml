@@ -6,6 +6,8 @@ community:
     # YAML files that are not rules.
     - stats
     - template.yaml
+    - .pre-commit-config.yaml
+    - .github
   author: Semgrep
   license: LGPL 2.1
 gitlab:
@@ -15,6 +17,9 @@ gitlab:
   ignored:
     # YAML files that are not rules.
     - mappings
+    - .gitlab-ci.yml
+    - ci
+    - qa
     # Invalid rules
     - java/scaffold.yml
     - scala/scaffold.yml
@@ -26,6 +31,9 @@ trailofbits:
   description: Rules used in the audits, research, and projects of Trail of Bits
   repository_url: https://github.com/trailofbits/semgrep-rules
   repository_branch: main
+  ignored:
+    # YAML files that are not rules
+    - .github
   author: Trail of Bits
   license: AGPL-3.0
 "0xdea":
@@ -41,6 +49,8 @@ elttam:
   ignored:
     # YAML files that are not rules.
     - perf-templates
+    - .pre-commit-config.yaml
+    - .github
   author: elttam
   license: MIT
 kondukto:
@@ -48,12 +58,12 @@ kondukto:
   repository_url: https://github.com/kondukto-io/semgrep-rules
   repository_branch: master
   author: Kondukto
-  license: 
+  license:
 dgryski:
   description: Custom Go rules
   repository_url: https://github.com/dgryski/semgrep-go
   repository_branch: master
-  author: Damian Gryski 
+  author: Damian Gryski
   license: MIT
 dotta:
   description: Rules developed while doing pentest on web and mobile apps
