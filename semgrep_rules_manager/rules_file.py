@@ -30,14 +30,12 @@ class RulesFile:
                     if rule.get("languages", False)
                 ]
 
-            except (KeyError, yaml.composer.ComposerError):
+            except (KeyError, AttributeError, yaml.composer.ComposerError):
                 raise InvalidRulesFileException()
 
         self.location = location
 
-    def get_rules_per_lang(
-        self, beautified: bool = False
-    ) -> collections.Counter:
+    def get_rules_per_lang(self, beautified: bool = False) -> collections.Counter:
         langs = []
         for rule in self.rules:
             languages = (

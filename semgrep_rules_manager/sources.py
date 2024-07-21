@@ -39,9 +39,7 @@ class IDStandardizationPreprocessor(Preprocessor):
         with open(filename, "r+", encoding="utf-8") as file:
             content = file.read()
 
-            new_content = re.sub(
-                r"\n- id: \".*\/(.*)\"\n", r"\n- id: \1\n", content
-            )
+            new_content = re.sub(r"\n- id: \".*\/(.*)\"\n", r"\n- id: \1\n", content)
 
             file.seek(0)
             file.truncate()
@@ -102,16 +100,14 @@ class Source:
         return repo.rev_parse("origin/" + self.repo_brach).hexsha
 
     def download(self) -> None:
-        git.Repo.clone_from(self.repo_url, self.location,multi_options=['--depth=1'])
+        git.Repo.clone_from(self.repo_url, self.location, multi_options=["--depth=1"])
 
         self._preprocess()
         self._remove_ignored()
 
     def _preprocess(self) -> None:
         for preprocessor_id in self.preprocessors_ids:
-            preprocessor = PreprocessorsFactory.create(
-                preprocessor_id, self.location
-            )
+            preprocessor = PreprocessorsFactory.create(preprocessor_id, self.location)
 
             preprocessor.preprocess()
 
@@ -146,9 +142,7 @@ class Source:
 
         return rules_count
 
-    def _count_rules_per_lang(
-        self, beautified: bool = False
-    ) -> typing.Dict[str, int]:
+    def _count_rules_per_lang(self, beautified: bool = False) -> typing.Dict[str, int]:
         counter = collections.Counter()
         for rules_file in self.get_rule_files():
             counter += rules_file.get_rules_per_lang(beautified)
