@@ -65,7 +65,7 @@ class PreprocessorsFactory:
 
         raise PreprocessorNotFoundException()
 
-
+DEFUALT_IGNORED = ['.gitlab-ci.yml', '.github', '.pre-commit-config.yaml']
 @dataclass
 class Source:
     identifier: str
@@ -83,17 +83,19 @@ class Source:
     is_synced: bool = False
 
     def __post_init__(self) -> None:
+        self.ignored += DEFUALT_IGNORED
         self.is_downloaded = os.path.isdir(self.location)
         if self.is_downloaded:
             self.local_commit = self._get_last_local_commit()
             self.remote_commit = self._get_last_remote_commit()
-            self.is_synced = self.local_commit == self.remote_commit
+            self.is_synced = False # self.local_commit == self.remote_commit
 
     def _get_last_local_commit(self) -> str:
         repo = git.Repo(self.location)
 
         return repo.head.object.hexsha
 
+    # TODO: this function only checks local files and is insufficient to check remote commit
     def _get_last_remote_commit(self) -> str:
         repo = git.Repo(self.location)
 
@@ -124,6 +126,7 @@ class Source:
         repo = git.Repo(self.location)
         origin = repo.remotes.origin
         origin.pull()
+        self._remove_ignored()
 
     def remove(self) -> None:
         if self.is_downloaded:
