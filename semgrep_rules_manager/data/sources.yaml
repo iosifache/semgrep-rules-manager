@@ -6,8 +6,6 @@ community:
     # YAML files that are not rules.
     - stats
     - template.yaml
-    - .pre-commit-config.yaml
-    - .github
   author: Semgrep
   license: LGPL 2.1
 gitlab:
@@ -17,7 +15,6 @@ gitlab:
   ignored:
     # YAML files that are not rules.
     - mappings
-    - .gitlab-ci.yml
     - ci
     - qa
     # Invalid rules
@@ -31,9 +28,6 @@ trailofbits:
   description: Rules used in the audits, research, and projects of Trail of Bits
   repository_url: https://github.com/trailofbits/semgrep-rules
   repository_branch: main
-  ignored:
-    # YAML files that are not rules
-    - .github
   author: Trail of Bits
   license: AGPL-3.0
 "0xdea":
@@ -49,8 +43,6 @@ elttam:
   ignored:
     # YAML files that are not rules.
     - perf-templates
-    - .pre-commit-config.yaml
-    - .github
   author: elttam
   license: MIT
 kondukto:
@@ -77,3 +69,33 @@ hashicorp:
   repository_branch: main
   author: Hashicorp
   license: MPL-2.0
+decurity:
+  description: Rules for smart contracts based on DeFi exploits
+  repository_url: https://github.com/decurity/semgrep-smart-contracts
+  repository_branch: master
+  author: Decurity
+  license: CC BY-NC-SA 4.0
+mindedsecurity:
+  description: Rules derived from the OWASP MASTG specifically for Android applications
+  repository_url: https://github.com/mindedsecurity/semgrep-rules-android-security
+  repository_branch: main
+  author: mindedsecurity
+  license: GPL3
+akabe1:
+  description: Rules for vulnerability detection on source code (swift, java, cobol)
+  repository_url: https://github.com/akabe1/akabe1-semgrep-rules
+  repository_branch: main
+  author: akabe1
+  license: unknown
+atlassian-labs:
+  description: Atlassian-maintained Semgrep rules
+  repository_url: https://github.com/atlassian-labs/atlassian-sast-ruleset
+  repository_branch: main
+  author: atlassian-labs
+  license: LGPL 2.1
+apiiro:
+  description: Focused malicious code detection ruleset, with a high protection-to-noise ratio
+  repository_url: https://github.com/apiiro/malicious-code-ruleset
+  repository_branch: main
+  author: apiiro
+  license: MIT
