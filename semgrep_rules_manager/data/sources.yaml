@@ -76,17 +76,17 @@ decurity:
   author: Decurity
   license: CC BY-NC-SA 4.0
 mindedsecurity:
-  description: Rules derived from the OWASP MASTG specifically for Android applications
+  description: Rules derived from the OWASP MASTG for Android applications
   repository_url: https://github.com/mindedsecurity/semgrep-rules-android-security
   repository_branch: main
   author: mindedsecurity
   license: GPL3
 akabe1:
-  description: Rules for vulnerability detection on source code (swift, java, cobol)
+  description: Custom Swift, Java, and Cobol rules
   repository_url: https://github.com/akabe1/akabe1-semgrep-rules
   repository_branch: main
   author: akabe1
-  license: unknown
+  license:
 atlassian-labs:
   description: Atlassian-maintained Semgrep rules
   repository_url: https://github.com/atlassian-labs/atlassian-sast-ruleset
@@ -94,7 +94,7 @@ atlassian-labs:
   author: atlassian-labs
   license: LGPL 2.1
 apiiro:
-  description: Focused malicious code detection ruleset, with a high protection-to-noise ratio
+  description: Ruleset focused on malicious code, with a high protection-to-noise ratio
   repository_url: https://github.com/apiiro/malicious-code-ruleset
   repository_branch: main
   author: apiiro
