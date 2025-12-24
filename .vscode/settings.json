@@ -8,6 +8,14 @@
             "source.organizeImports": "explicit"
         },
     },
+    "files.exclude": {
+        "**/.git": true,
+        "**/.svn": true,
+        "**/.hg": true,
+        "**/.DS_Store": true,
+        "**/Thumbs.db": true,
+        "**/__pycache__": true,
+    },
     "isort.path": ".venv/bin/isort",
     "markdown-toc.depthFrom": 2,
     "python.analysis.typeCheckingMode": "strict"
