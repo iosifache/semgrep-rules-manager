@@ -9,5 +9,6 @@
         },
     },
     "isort.path": ".venv/bin/isort",
-    "markdown-toc.depthFrom": 2
+    "markdown-toc.depthFrom": 2,
+    "python.analysis.typeCheckingMode": "strict"
 }
