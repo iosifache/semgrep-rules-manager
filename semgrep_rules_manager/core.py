@@ -34,7 +34,7 @@ def download_sources(download_dir: str, source_id: str = None) -> int:
 
 def sync_sources(download_dir: str, source_id: str = None) -> int:
     def process_source(source: Source) -> bool:
-        if source.is_downloaded:
+        if source.is_downloaded and not source.is_synced:
             source.update()
 
             return True
