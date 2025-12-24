@@ -134,6 +134,12 @@ class Source:
         if self.is_downloaded:
             shutil.rmtree(self.location)
 
+    def count_all_rules(self) -> int:
+        per_language_count = self.count_rules(beautified=False)
+        total_rules = sum(per_language_count.values())
+
+        return total_rules
+
     def count_rules(self, beautified: bool = False) -> typing.Dict[str, int]:
         downloaded = self.is_downloaded
 

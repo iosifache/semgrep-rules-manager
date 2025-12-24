@@ -26,17 +26,17 @@ def generate_table(sources: typing.List[Source]) -> str:
     )
 
 
-def write_readmes(table: str) -> str:
+def write_readmes(source_count:int, rules_count: int, table: str) -> str:
     for readme in ["README.template.md", "README.pypi.template.md"]:
-        generate_readme(readme, table)
+        generate_readme(readme, source_count, rules_count, table)
 
-
-def generate_readme(template_readme: str, table: str) -> str:
+def generate_readme(template_readme: str, source_count: int, rules_count: int, table: str) -> str:
     output_file = template_readme.replace(".template", "")
     with open(template_readme, "r", encoding="utf-8") as template_file:
         content = template_file.read()
         content = content.replace("<!-- INCLUDED_SOURCES -->", table)
-
+        content = content.replace("<!-- SOURCES_COUNT -->", str(source_count))
+        content = content.replace("<!-- RULES_COUNT -->", str(rules_count))
         with open(output_file, "w", encoding="utf-8") as readme_file:
             readme_file.write(content)
 
@@ -48,9 +48,17 @@ def stringify_lang_counter(counter: collections.Counter) -> str:
 
 
 def main() -> None:
-    sources = read_sources("/tmp")
+    # Convert generator to list to allow multiple iterations
+    sources = list(read_sources("/tmp"))
+
+    source_count = len(sources)
+    rules_count = sum(
+        [source.count_all_rules() for source in sources]
+    )
+
     table = generate_table(sources)
-    write_readmes(table)
+
+    write_readmes(source_count, rules_count, table)
 
 
 if __name__ == "__main__":
