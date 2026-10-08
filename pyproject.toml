@@ -19,10 +19,10 @@ classifiers = [
 
 [tool.poetry.dependencies]
 python = "^3.10"
-click = "^8.1.6"
+click = "^8.5.0"
 pyyaml = "^6.0.1"
 gitpython = "^3.1.32"
-rich = "^13.4.2"
+rich = "^15.0.0"
 
 [tool.poetry.group.dev.dependencies]
 flake8 = "^6.0.0"
